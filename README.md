@@ -1,2 +1,2 @@
-# computercraft
+# Computercraft
 Lua scripts for computercraft
