@@ -2,7 +2,7 @@
 Lua scripts for computercraft
 
 # Starting
-To start, run "pastebin get 38TrCMaf github.lua" without quotes
+To start, run "pastebin get 8cGX0i48 github.lua" without quotes
 
 # Usage
 Run "github show index" to list all available scripts\n
