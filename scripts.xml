@@ -1,5 +1,4 @@
 <dir name="essentials">
-    <script name="firstScript" />
-    <script name="secondScript" />
+    <script name="fileManager" />
     <script name="xmlParser" />
 </dir>
