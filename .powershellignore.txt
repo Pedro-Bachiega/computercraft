@@ -1,0 +1,8 @@
+.git
+.gitignore
+.powershellignore.txt
+generateIndex.ps1
+LICENSE
+README.md
+scripts.xml
+updateIndex.cmd

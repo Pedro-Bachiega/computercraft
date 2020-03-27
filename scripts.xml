@@ -1,4 +1,7 @@
-<dir name="api">
-    <script name="fileManager" />
-    <script name="xmlParser" />
-</dir>
+<?xml version='1.0'?>
+<root>
+  <dir name="api">
+    <script name="fileManager.lua" />
+    <script name="xmlParser.lua" />
+  </dir>
+</root>
