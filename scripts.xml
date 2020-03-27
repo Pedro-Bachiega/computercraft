@@ -1,4 +1,4 @@
-<dir name="essentials">
+<dir name="api">
     <script name="fileManager" />
     <script name="xmlParser" />
 </dir>
