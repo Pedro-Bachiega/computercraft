@@ -31,5 +31,5 @@ function Get {
             $OutNull = $xmlDoc.AppendChild($oElmntRoot)
             loopNodes $oElmntRoot $path
     } 
-    $OutNull = $xmlDoc.Save("$path\scripts.xml")
+    $OutNull = $xmlDoc.Save("$path\index.xml")
 } 
