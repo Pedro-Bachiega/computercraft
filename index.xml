@@ -2,11 +2,9 @@
 <root>
   <dir name="api">
     <script name="fileManager.lua" />
+    <script name="touchpoint.lua" />
     <script name="xmlParser.lua" />
   </dir>
-  <dir name="tools">
-    <script name="constants.lua" />
-    <script name="github.lua" />
-  </dir>
-  <script name="index.xml" />
+  <script name="constants.lua" />
+  <script name="github.lua" />
 </root>

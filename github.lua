@@ -2,14 +2,14 @@ local command = arg[1]
 local fileName = arg[2]
 local url = ""
 
-if fs.exists("tools/constants.lua") then
-    os.loadAPI("tools/constants.lua")
+if fs.exists("constants") then
+    os.loadAPI("constants")
     url = constants.GITHUB_URL
 else
     url = arg[3]
 end
 
-os.loadAPI("api/fileManager.lua")
+os.loadAPI("api/fileManager")
 
 local function saveFile(content, savedFileName)
     if savedFileName == nil then
@@ -20,7 +20,7 @@ local function saveFile(content, savedFileName)
 end
 
 local function parseXml(xmlText)
-    os.loadAPI("api/xmlParser.lua")
+    os.loadAPI("api/xmlParser")
     return xmlParser.newParser():ParseXmlText(xmlText)
 end
 
@@ -69,7 +69,7 @@ local function printTableValues(tableName, value)
 end
 
 local function processXml(content)
-    local parserPath = "api/xmlParser.lua"
+    local parserPath = "api/xmlParser"
     if not fs.exists(parserPath) then
         fileManager.download(baseUrl .. parserPath, parserPath)
     end
