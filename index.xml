@@ -1,7 +1,8 @@
 <?xml version='1.0'?>
 <root>
   <dir name="api">
-    <script name="fileManager.lua" />
+    <script name="httpHelper.lua" />
+    <script name="teamsMsg.lua" />
     <script name="touchpoint.lua" />
     <script name="xmlParser.lua" />
   </dir>

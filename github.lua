@@ -9,14 +9,14 @@ else
     url = arg[3]
 end
 
-os.loadAPI("api/fileManager")
+os.loadAPI("api/httpHelper")
 
 local function saveFile(content, savedFileName)
     if savedFileName == nil then
         savedFileName = fileName
     end
     
-    fileManager.saveFile(content, savedFileName)
+    httpHelper.saveFile(content, savedFileName)
 end
 
 local function parseXml(xmlText)
@@ -71,7 +71,7 @@ end
 local function processXml(content)
     local parserPath = "api/xmlParser"
     if not fs.exists(parserPath) then
-        fileManager.download(baseUrl .. parserPath, parserPath)
+        httpHelper.download(baseUrl .. parserPath, parserPath)
     end
     
     local xml = parseXml(content)
@@ -92,7 +92,7 @@ elseif command ~= "get" and command ~= "show" then
     error("Unknown argument for param: command")
 end
 
-local content = fileManager.getContent(baseUrl .. fileName)
+local content = httpHelper.getContent(baseUrl .. fileName)
 
 if command == "get" and fileName ~= "index.xml" and not fs.exists(fileName) then
     saveFile(content)

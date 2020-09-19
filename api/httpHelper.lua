@@ -24,8 +24,15 @@ function remove(absolutePath)
     end
 end
 
+function post(url, data)
+    local connection = http.post(url, data)
+    local content = connection.readAll()
+    connection.close
+    return content
+end
+
 function update()
-    download("https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/api/fileManager", "api/fileManager")
+    download("https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/api/httpHelper", "api/httpHelper")
 end
 
 local command = arg[1]
@@ -34,24 +41,24 @@ if command ~= nil then
     if command == "get" then
         local url = arg[2]
         
-        if url == nil then error("Usage:\n fileManager get <url>") end
+        if url == nil then error("Usage:\n httpHelper get <url>") end
         return get(arg[2])
     elseif command == "saveFile" then
         local fileName = arg[2]
         local content = arg[3]
 
-        if fileName == nil or content == nil then error("Usage:\n fileManager saveFile <fileName> <content>") end
+        if fileName == nil or content == nil then error("Usage:\n httpHelper saveFile <fileName> <content>") end
         saveFile(fileName, content)
     elseif command == "download" then
         local url = arg[2]
         local fileName = arg[3]
         
-        if url == nil or fileName == nil then error("Usage:\n fileManager download <url> <fileName>") end
+        if url == nil or fileName == nil then error("Usage:\n httpHelper download <url> <fileName>") end
         download(url, fileName)
     elseif command == "remove" then
         local absolutePath = arg[2]
         
-        if absolutePath == nil then error("Usage:\n fileManager remove <absolutePath>") end
+        if absolutePath == nil then error("Usage:\n httpHelper remove <absolutePath>") end
         remove(absolutePath)
     elseif command == "update" then
         update()
