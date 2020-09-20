@@ -1,6 +1,6 @@
 --DEPENDENCIES: api/httpHelper
 
-if not fs.exist("api/httpHelper") then
+if not fs.exists("api/httpHelper") then
     shell.run("pastebin get mLW65yV0 api/httpHelper")
 end
 

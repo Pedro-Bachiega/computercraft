@@ -1,7 +1,8 @@
 --DEPENDENCIES: api/httpHelper,api/xmlParser
 
 local command = arg[1]
-local fileName = arg[2]
+local cloudFileName = arg[2]
+local localFileName = arg[3]
 local baseUrl = "https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/"
 
 if fs.exists("constants") then
@@ -92,25 +93,30 @@ local function processXml(content)
     end
 end
 
-if fileName == nil or command == nil then
+if cloudFileName == nil or command == nil then
     error("Usage: \'github <get|show> <file_name>\'\n")
-elseif fileName == "index" then
-    fileName = "index.xml"
-elseif not string.find(fileName, ".lua") then
-    fileName = fileName .. ".lua"
+elseif cloudFileName == "index" then
+    cloudFileName = "index.xml"
+elseif not string.find(cloudFileName, ".lua") then
+    cloudFileName = cloudFileName .. ".lua"
 elseif command ~= "get" and command ~= "show" then
     error("Unknown argument for param: command")
 end
 
-if command == "get" and fileName ~= "index.xml" and not fs.exists(fileName) then
-    helper:download(baseUrl .. fileName, string.gsub(fileName, ".lua", ""))
-elseif command == "show" and fileName == "index.xml" then
-    local content = helper:get(baseUrl .. fileName)
+newFileName = cloudFileName
+if localFileName ~= nil then
+    newFileName = localFileName
+end 
+
+if command == "get" and cloudFileName ~= "index.xml" and not fs.exists(newFileName) then
+    helper:download(baseUrl .. cloudFileName, string.gsub(newFileName, ".lua", ""))
+elseif command == "show" and cloudFileName == "index.xml" then
+    local content = helper:get(baseUrl .. cloudFileName)
     processXml(content)
     print("Index:")
     printTableValues(nil, dirs)
 elseif command == "show" then
-    local content = helper:get(baseUrl .. fileName)
+    local content = helper:get(baseUrl .. cloudFileName)
     write(content)
     print("\n")
 end
