@@ -1,4 +1,4 @@
---DEPENDENCIES: api/httpHelper
+--DEPENDENCIES: api/httpHelper,api/xmlParser
 
 local command = arg[1]
 local fileName = arg[2]
@@ -81,7 +81,7 @@ end
 local function processXml(content)
     local parserPath = "api/xmlParser"
     if not fs.exists(parserPath) then
-        helper:download(baseUrl .. parserPath .. ".lua", parserPath)
+        helper:download("https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/api/xmlParser.lua", parserPath)
     end
     
     local xml = parseXml(content)

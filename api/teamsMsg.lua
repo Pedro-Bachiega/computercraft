@@ -1,5 +1,9 @@
 --DEPENDENCIES: api/httpHelper
 
+if not fs.exist("api/httpHelper") then
+    shell.run("pastebin get mLW65yV0 api/httpHelper")
+end
+
 os.loadAPI("api/httpHelper")
 
 function newMessage()
@@ -84,7 +88,7 @@ function newMessage()
         end
 
         if self:contains("image_url") then
-            facts = string.format(",\"activityImage\":%s", Helper["image_url"])
+            facts = string.format(",\"activityImage\":\"%s\"", Helper["image_url"])
         end
     
         payload = string.format("{\"@type\":\"MessageCard\",\"@context\":\"http://schema.org/extensions\",\"themeColor\":\"%s\",\"summary\":\"%s\",\"sections\":[{\"activityTitle\":\"%s\",\"activitySubtitle\":\"%s\"%s%s,\"markdown\":true}]}", themeColor, summary, title, subtitle, imageUrl, facts)
