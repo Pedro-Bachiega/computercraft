@@ -67,9 +67,9 @@ local function printTableValues(tableName, value)
                 end
             else
                 if tableName == "root" then
-                    print(tostring(v))
+                    print("\n" .. tostring(v))
                 else
-                    print(tableName .. "/" .. tostring(v))
+                    print("\n" .. tableName .. "/" .. tostring(v))
                 end
             end
         end
