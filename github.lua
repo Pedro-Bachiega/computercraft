@@ -2,24 +2,19 @@
 
 local command = arg[1]
 local fileName = arg[2]
-local url = ""
+local baseUrl = "https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/"
 
 if fs.exists("constants") then
     os.loadAPI("constants")
-    url = constants.GITHUB_URL
-else
-    url = arg[3]
+    baseUrl = constants.GITHUB_URL
+end
+
+if not fs.exists("api/httpHelper") then
+    shell.run("pastebin get mLW65yV0 api/httpHelper")
 end
 
 os.loadAPI("api/httpHelper")
-
-local function saveFile(content, savedFileName)
-    if savedFileName == nil then
-        savedFileName = fileName
-    end
-    
-    httpHelper.saveFile(content, savedFileName)
-end
+helper = httpHelper.newHelper()
 
 local function parseXml(xmlText)
     os.loadAPI("api/xmlParser")
@@ -32,6 +27,7 @@ local function gatherChildrenInfo(node, dirName)
     if node ~= nil then
         local nodeType = node:name()
         local nodeName = node["@name"]
+        local nodeDependencies = node["@dependencies"]
         
         if nodeType == "dir" then
             if dirName == nil then
@@ -40,7 +36,15 @@ local function gatherChildrenInfo(node, dirName)
                 dirs[dirName][nodeName] = {}
             end
         elseif nodeType == "script" then
-           table.insert(dirs[dirName], nodeName)
+            if nodeDependencies ~= nil then
+                nodeName = nodeName .. " - Requires: " .. nodeDependencies
+            end
+            if dirName == nil then
+                dirName = "root"
+                dirs[dirName] = {}
+            end
+
+            table.insert(dirs[dirName], nodeName)
         end
         
         local children = node:children()
@@ -62,7 +66,11 @@ local function printTableValues(tableName, value)
                     printTableValues(tableName .. "/" .. tostring(i))
                 end
             else
-                print(tableName .. "/" .. tostring(v))
+                if tableName == "root" then
+                    print(tostring(v))
+                else
+                    print(tableName .. "/" .. tostring(v))
+                end
             end
         end
     else
@@ -73,7 +81,7 @@ end
 local function processXml(content)
     local parserPath = "api/xmlParser"
     if not fs.exists(parserPath) then
-        httpHelper.download(baseUrl .. parserPath, parserPath)
+        helper:download(baseUrl .. parserPath .. ".lua", parserPath)
     end
     
     local xml = parseXml(content)
@@ -94,15 +102,15 @@ elseif command ~= "get" and command ~= "show" then
     error("Unknown argument for param: command")
 end
 
-local content = httpHelper.getContent(baseUrl .. fileName)
-
 if command == "get" and fileName ~= "index.xml" and not fs.exists(fileName) then
-    saveFile(content)
+    helper:download(baseUrl .. fileName, string.gsub(fileName, ".lua", ""))
 elseif command == "show" and fileName == "index.xml" then
+    local content = helper:get(baseUrl .. fileName)
     processXml(content)
     print("Index:")
     printTableValues(nil, dirs)
 elseif command == "show" then
+    local content = helper:get(baseUrl .. fileName)
     write(content)
     print("\n")
 end

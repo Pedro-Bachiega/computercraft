@@ -2,10 +2,9 @@
 <root>
   <dir name="api">
     <script name="httpHelper.lua" />
-    <script name="teamsMsg.lua" dependencies="api/httphelper" />
+    <script name="teamsMsg.lua" dependencies="api/httpHelper" />
     <script name="touchpoint.lua" />
     <script name="xmlParser.lua" />
   </dir>
-  <script name="constants.lua" />
-  <script name="github.lua" dependencies="api/httphelper" />
+  <script name="github.lua" dependencies="api/httpHelper" />
 </root>

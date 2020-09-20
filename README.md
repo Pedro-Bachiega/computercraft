@@ -2,12 +2,11 @@
 Lua scripts for computercraft
 
 # Starting
-To start, run "pastebin get mLW65yV0 httpHelper.lua"
-Run "httpHelper download https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/github.lua"
+To start, run "pastebin get tNQHQqVw github"
 
 # Usage
 Run "github show index" to list all available scripts
 Run "github get <script_name>" to download script
 
 # Updating index automatically
-Run "powershell -ExecutionPolicy ByPass -command ". "%cd%\generateIndex.ps1"; Get;"" without the surrounding quotes
+Run "generateIndex.cmd" without the surrounding quotes
