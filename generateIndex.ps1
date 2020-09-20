@@ -15,6 +15,13 @@ function loopNodes {
         if (!($ignoredList.Contains($_.Name))) {
             $OutNull = $oElmntChild = $xmlDoc.CreateElement("script")
             $OutNull = $oElmntChild.SetAttribute("name", $_.Name)
+
+            $firstLine = [IO.File]::ReadLines($_.FullName, [text.encoding]::UTF8) | Select-Object -first 1
+            if ($firstLine -like "--DEPENDENCIES:*") {
+                $dependencies = $firstLine.split(":")[1]
+                $OutNull = $oElmntChild.SetAttribute("dependencies", $dependencies.Trim())
+            }
+
             $OutNull = $oElmntParent.AppendChild($oElmntChild)
         }
     }

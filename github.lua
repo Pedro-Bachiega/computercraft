@@ -1,3 +1,5 @@
+--DEPENDENCIES: api/httpHelper
+
 local command = arg[1]
 local fileName = arg[2]
 local url = ""

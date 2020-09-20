@@ -1,3 +1,5 @@
+--DEPENDENCIES: api/httphelper
+
 os.loadAPI("api/httpHelper")
 
 function newMessage()
