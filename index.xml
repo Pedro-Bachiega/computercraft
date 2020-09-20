@@ -1,12 +1,12 @@
 <?xml version='1.0'?>
 <root>
   <dir name="api">
-    <script name=".msgTemplate.lua" dependencies="api/teamsMsg,api/httpHelper" />
     <script name="httpHelper.lua" />
     <script name="jsonParser.lua" />
     <script name="teamsMsg.lua" dependencies="api/httpHelper" />
     <script name="touchpoint.lua" />
     <script name="xmlParser.lua" />
   </dir>
+  <script name=".msgTemplate.lua" dependencies="api/teamsMsg,api/httpHelper" />
   <script name="github.lua" dependencies="api/httpHelper,api/xmlParser" />
 </root>

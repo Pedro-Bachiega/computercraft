@@ -9,11 +9,11 @@ os.loadAPI("api/httpHelper")
 function newMessage()
     Helper = {}
 
-    function Helper:insert(key, value)
+    local function Helper:insert(key, value)
         Helper[key] = value
     end
     
-    function Helper:contains(key)
+    local function Helper:contains(key)
         return Helper[key] ~= nil
     end
 
