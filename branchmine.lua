@@ -41,6 +41,7 @@ local function depositItems()
         turtle.dropDown()
     end
 
+    turtle.select(1)
     turtle.digDown()
 end
 
@@ -107,8 +108,6 @@ for i=0, repeatCount, 1 do
     if currentLap % 2 == 0 then
         checkFuel(false)
     end
-
-    depositItems()
 
     turtle.select(1)
     turtle.forward()
