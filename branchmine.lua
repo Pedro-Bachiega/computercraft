@@ -45,18 +45,6 @@ local function depositItems()
     turtle.digDown()
 end
 
-local function checkInventorySpace()
-    hasSpace = false
-
-    for i = 3, 16 do
-        if turtle.getItemCount(i) == 0 then hasSpace = true end
-    end
-
-    if not hasSpace then
-        depositItems()
-    end
-end
-
 local function placeTorch()
     turtle.select(1)
     turtle.placeDown(1)
@@ -66,8 +54,8 @@ local function walk(isDigging)
     for i=0, steps, 1 do
         if i > 0 and i % 5 == 0 and isDigging and shouldPlaceTorches then
             placeTorch()
-        elseif i % 10 == 0 and isDigging then 
-            checkInventorySpace()
+        elseif i % 16 == 0 and isDigging then 
+            depositItems()
         end
 
         if isDigging then
@@ -104,10 +92,6 @@ for i=0, repeatCount, 1 do
     turtle.turnLeft()
     turtle.turnLeft()
     walk(false)
-
-    if currentLap % 2 == 0 then
-        checkFuel(false)
-    end
 
     turtle.select(1)
     turtle.forward()
