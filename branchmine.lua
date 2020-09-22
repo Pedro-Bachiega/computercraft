@@ -45,7 +45,6 @@ local function checkFuel(printError)
             end
         end
 
-        -- check if it was enough
         checkFuel(true)
     end
 end
@@ -62,7 +61,7 @@ end
 
 local function placeTorch()
     turtle.select(1)
-    turtle.place(1)
+    turtle.placeUp(1)
 end
 
 local function walk(isDigging)
