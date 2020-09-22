@@ -104,6 +104,7 @@ for i=0, repeatCount, 1 do
     depositItems()
 
     turtle.select(1)
+    turtle.forward()
     turtle.turnLeft()
     if not turtle.forward() then turtle.dig() end
     if not turtle.compareDown() then turtle.digDown() end
