@@ -45,6 +45,7 @@ local function checkFuel(printError)
             end
         end
 
+        -- check if it was enough
         checkFuel(true)
     end
 end
@@ -175,6 +176,7 @@ local function moveToChest(currentPosition)
     end
 
     position = vector.new(gps.locate(5))
+
     if not isAtChestSpot(position) then moveToChest(position) end
 end
 
@@ -198,4 +200,5 @@ walk(true)
 turtle.turnRight()
 turtle.turnRight()
 walk(false)
+
 depositItems()
