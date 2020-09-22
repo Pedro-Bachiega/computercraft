@@ -38,7 +38,7 @@ local function gatherChildrenInfo(node, dirName)
             end
         elseif nodeType == "script" then
             if nodeDependencies ~= nil then
-                nodeName = nodeName .. " - Requires: " .. nodeDependencies
+                nodeName = nodeName .. " - Requires: " .. nodeDependencies .. "\n"
             end
             if dirName == nil then
                 dirName = "root"
@@ -68,9 +68,9 @@ local function printTableValues(tableName, value)
                 end
             else
                 if tableName == "root" then
-                    print("\n" .. tostring(v))
+                    print(tostring(v))
                 else
-                    print("\n" .. tableName .. "/" .. tostring(v))
+                    print(tableName .. "/" .. tostring(v))
                 end
             end
         end
