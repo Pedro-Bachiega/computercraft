@@ -66,9 +66,9 @@ end
 
 local function walk(isDigging)
     for i=0, steps, 1 do
-        if i % 5 == 0 then
+        if i % 5 == 0 and isDigging then
             placeTorch()
-        elseif i % 10 == 0 then 
+        elseif i % 10 == 0 and isDigging then 
             checkInventorySpace() 
         end
 
