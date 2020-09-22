@@ -1,12 +1,18 @@
 local shouldPlaceTorches = false
 local currentDisplacement = 0
 local steps = arg[1]
+local repeatCount = arg[2]
 if steps == nil then
     print("How many steps?")
     steps = io.read()
 end
+if repeatCount == nil then
+    print("How many repetitions?")
+    repeatCount = io.read()
+end
 
 steps = tonumber(steps)
+repeatCount = tonumber(repeatCount)
 
 turtle.select(1)
 shouldPlaceTorches = turtle.compareDown()
@@ -80,11 +86,20 @@ local function walk(isDigging)
     end
 end
 
-checkFuel(false)
+for i=0, repeatCount, 1 do
+    checkFuel(false)
 
-walk(true)
-turtle.turnRight()
-turtle.turnRight()
-walk(false)
+    walk(true)
+    turtle.turnLeft()
+    turtle.turnLeft()
+    walk(false)
 
-depositItems()
+    depositItems()
+
+    turtle.select(1)
+    turtle.turnLeft()
+    if not turtle.forward() then turtle.dig() end
+    if not turtle.compareDown() then turtle.digDown() end
+    turtle.digUp()
+    turtle.turnLeft()
+end
