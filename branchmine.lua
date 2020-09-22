@@ -72,9 +72,8 @@ local function walk(isDigging)
         end
 
         if isDigging then
-            if not turtle.forward() then 
+            while not turtle.forward() then 
                 turtle.dig()
-                turtle.forward()
             end
 
             currentDisplacement = currentDisplacement + 1
