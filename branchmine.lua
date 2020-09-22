@@ -1,3 +1,4 @@
+local shouldPlaceTorches = false
 local currentDisplacement = 0
 local steps = arg[1]
 if steps == nil then
@@ -6,6 +7,9 @@ if steps == nil then
 end
 
 steps = tonumber(steps)
+
+turtle.select(1)
+shouldPlaceTorches = turtle.compareDown()
 
 local function checkFuel(printError)
     if turtle.getFuelLevel() < (steps*2) then
@@ -54,7 +58,7 @@ end
 
 local function walk(isDigging)
     for i=0, steps, 1 do
-        if i > 0 and i % 5 == 0 and isDigging then
+        if i > 0 and i % 5 == 0 and isDigging and shouldPlaceTorches then
             placeTorch()
         elseif i % 10 == 0 and isDigging then 
             checkInventorySpace() 
