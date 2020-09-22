@@ -48,7 +48,7 @@ local function walk(isDigging)
             checkInventorySpace() 
         end
 
-        if and isDigging then
+        if isDigging then
             if not turtle.forward() then 
                 turtle.dig()
                 turtle.forward()
