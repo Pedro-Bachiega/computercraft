@@ -72,7 +72,7 @@ local function walk(isDigging)
         end
 
         if isDigging then
-            while not turtle.forward() then 
+            while not turtle.forward() do 
                 turtle.dig()
             end
 
@@ -106,7 +106,10 @@ for i=0, repeatCount, 1 do
     turtle.turnLeft()
     walk(false)
 
-    if currentLap % 2 == 0 then depositItems() end
+    if currentLap % 2 == 0 then
+        checkFuel(false)
+        depositItems()
+    end
 
     turtle.select(1)
     turtle.forward()
