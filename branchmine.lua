@@ -1,4 +1,3 @@
-local shouldStopDigging = false
 local currentDisplacement = 0
 local steps = arg[1]
 if steps == nil then
@@ -31,7 +30,9 @@ local function checkInventorySpace()
         if turtle.getItemCount(i) == 0 then hasSpace = true end
     end
 
-    shouldStopDigging = not hasSpace
+    if not hasSpace then
+        depositItems()
+    end
 end
 
 local function placeTorch()
@@ -47,7 +48,7 @@ local function walk(isDigging)
             checkInventorySpace() 
         end
 
-        if not shouldStopDigging and isDigging then
+        if and isDigging then
             if not turtle.forward() then 
                 turtle.dig()
                 turtle.forward()
@@ -83,5 +84,3 @@ walk(true)
 turtle.turnRight()
 turtle.turnRight()
 walk(false)
-
-depositItems()
