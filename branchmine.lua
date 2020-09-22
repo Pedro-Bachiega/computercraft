@@ -14,9 +14,6 @@ end
 steps = tonumber(steps)
 repeatCount = tonumber(repeatCount)
 
-turtle.select(1)
-shouldPlaceTorches = turtle.compareDown()
-
 local function checkFuel(printError)
     if turtle.getFuelLevel() < (steps*2) then
         if printError then error("Insufficient fuel") end
@@ -87,7 +84,17 @@ local function walk(isDigging)
 end
 
 for i=0, repeatCount, 1 do
+    turtle.select(1)
+    shouldPlaceTorches = turtle.compareDown()
+
     checkFuel(false)
+
+    if not turtle.forward() then
+        turtle.dig()
+        turtle.forward()
+        turtle.digUp()
+        turtle.digDown()
+    end
 
     walk(true)
     turtle.turnLeft()
