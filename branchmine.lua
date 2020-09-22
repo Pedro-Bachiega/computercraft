@@ -20,7 +20,7 @@ local function checkFuel(printError)
     if turtle.getFuelLevel() < (steps*2) then
         if printError then error("Insufficient fuel") end
 
-        for i = 1, 16 do
+        for i = 3, 16 do
             turtle.select(i)
             if turtle.refuel(0) then
                 local halfStack = math.ceil(turtle.getItemCount(i)/2)
@@ -41,14 +41,13 @@ local function depositItems()
         turtle.dropDown()
     end
 
-    --ONLY WHEN USING ENDER CHEST
-    --turtle.digDown()
+    turtle.digDown()
 end
 
 local function checkInventorySpace()
     hasSpace = false
 
-    for i = 1, 16 do
+    for i = 3, 16 do
         if turtle.getItemCount(i) == 0 then hasSpace = true end
     end
 
@@ -66,9 +65,8 @@ local function walk(isDigging)
     for i=0, steps, 1 do
         if i > 0 and i % 5 == 0 and isDigging and shouldPlaceTorches then
             placeTorch()
-        --ONLY WHEN USING ENDER CHEST
-        --elseif i % 10 == 0 and isDigging then 
-            --checkInventorySpace()
+        elseif i % 10 == 0 and isDigging then 
+            checkInventorySpace()
         end
 
         if isDigging then
@@ -108,8 +106,9 @@ for i=0, repeatCount, 1 do
 
     if currentLap % 2 == 0 then
         checkFuel(false)
-        depositItems()
     end
+
+    depositItems()
 
     turtle.select(1)
     turtle.forward()
