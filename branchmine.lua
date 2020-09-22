@@ -37,7 +37,7 @@ end
 
 local function placeTorch()
     turtle.select(1)
-    turtle.placeUp(1)
+    turtle.placeDown(1)
 end
 
 local function walk(isDigging)
@@ -61,8 +61,6 @@ local function walk(isDigging)
             turtle.forward()
             currentDisplacement = currentDisplacement - 1
         end
-
-        print(string.format("Walked %d steps", currentDisplacement))
     end
 end
 
