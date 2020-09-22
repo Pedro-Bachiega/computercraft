@@ -41,7 +41,7 @@ end
 
 local function walk(isDigging)
     for i=0, steps, 1 do
-        if i % 5 == 0 and isDigging then
+        if i > 0 and i % 5 == 0 and isDigging then
             placeTorch()
         elseif i % 10 == 0 and isDigging then 
             checkInventorySpace() 
@@ -59,6 +59,8 @@ local function walk(isDigging)
             turtle.forward()
             currentDisplacement = currentDisplacement - 1
         end
+
+        print(string.format("Walked %d steps", currentDisplacement))
     end
 end
 
