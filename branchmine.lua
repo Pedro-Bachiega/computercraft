@@ -11,6 +11,8 @@ if repeatCount == nil then
     repeatCount = io.read()
 end
 
+currentLap = 0
+
 steps = tonumber(steps)
 repeatCount = tonumber(repeatCount)
 
@@ -39,7 +41,8 @@ local function depositItems()
         turtle.dropDown()
     end
 
-    turtle.digDown()
+    --ONLY WHEN USING ENDER CHEST
+    --turtle.digDown()
 end
 
 local function checkInventorySpace()
@@ -63,8 +66,9 @@ local function walk(isDigging)
     for i=0, steps, 1 do
         if i > 0 and i % 5 == 0 and isDigging and shouldPlaceTorches then
             placeTorch()
-        elseif i % 10 == 0 and isDigging then 
-            checkInventorySpace() 
+        --ONLY WHEN USING ENDER CHEST
+        --elseif i % 10 == 0 and isDigging then 
+            --checkInventorySpace()
         end
 
         if isDigging then
@@ -84,6 +88,8 @@ local function walk(isDigging)
 end
 
 for i=0, repeatCount, 1 do
+    currentLap = i + 1
+
     turtle.select(1)
     shouldPlaceTorches = turtle.compareDown()
 
@@ -101,7 +107,7 @@ for i=0, repeatCount, 1 do
     turtle.turnLeft()
     walk(false)
 
-    depositItems()
+    if currentLap % 2 == 0 then depositItems() end
 
     turtle.select(1)
     turtle.forward()
