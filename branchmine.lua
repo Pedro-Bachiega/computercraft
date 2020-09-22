@@ -23,6 +23,18 @@ local function checkFuel(printError)
     end
 end
 
+local function depositItems()
+    turtle.select(2)
+    turtle.placeDown()
+
+    for i = 3, 16 do
+        turtle.select(i)
+        turtle.dropDown()
+    end
+
+    turtle.digDown()
+end
+
 local function checkInventorySpace()
     hasSpace = false
 
@@ -64,21 +76,11 @@ local function walk(isDigging)
     end
 end
 
-local function depositItems()
-    turtle.select(2)
-    turtle.placeDown()
-
-    for i = 3, 16 do
-        turtle.select(i)
-        turtle.dropDown()
-    end
-
-    turtle.digDown()
-end
-
 checkFuel(false)
 
 walk(true)
 turtle.turnRight()
 turtle.turnRight()
 walk(false)
+
+depositItems()
