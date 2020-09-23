@@ -1,14 +1,14 @@
 turtle.select(1)
 
 local function refillBucket()
-    engineStillRunning = turtle.getItemDetail(1) == turtle.getItemDetail(2)
+    engineAreNotRunningRunning = turtle.getItemDetail(1) ~= turtle.getItemDetail(2)
 
-    if not engineStillRunning then
+    if engineAreNotRunningRunning then
         turtle.dropDown()
         os.sleep(3)
     end
 
-    return engineStillRunning
+    return engineAreNotRunningRunning
 end
 
 local function feedFirst()
