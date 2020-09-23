@@ -10,4 +10,5 @@
   <script name=".msgTemplate.lua" dependencies="api/teamsMsg,api/httpHelper" />
   <script name="branchmine.lua" />
   <script name="github.lua" dependencies="api/httpHelper,api/xmlParser" />
+  <script name="runQuarry.lua" />
 </root>
