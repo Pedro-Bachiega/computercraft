@@ -44,6 +44,13 @@ end
 
 local function run()
     while true do
+        refillBucket()
+
+        if turtle.getFuelLevel() < 100 then
+            turtle.refuel()
+            refillBucket()
+        end
+
         while not feedFirst() do
             os.sleep(300)
         end
