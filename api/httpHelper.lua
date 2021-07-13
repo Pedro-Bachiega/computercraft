@@ -35,7 +35,7 @@ function newHelper()
     end
     
     function HttpHelper:update()
-        self:download("https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/api/httpHelper", "api/httpHelper")
+        self:download("https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/api/httpHelper.lua", "api/httpHelper")
     end
 
     return HttpHelper
