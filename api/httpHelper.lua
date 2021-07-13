@@ -15,6 +15,10 @@ function newHelper()
     end
     
     function HttpHelper:download(url, fileName)
+        if not string.find(url, ".lua") then
+            url = url .. ".lua"
+        end
+
         local content = self:get(url)
         self:saveFile(fileName, content)
         print("Downloaded file:\n" .. fileName .. "\n")
@@ -39,4 +43,13 @@ function newHelper()
     end
 
     return HttpHelper
+end
+
+function update(localFileName)
+    if localFileName == nil then
+        error("Usage: httpHelper update <file_name>")
+    end
+
+    os.loadAPI("constants.lua")
+    newHelper():download(constants.GITHUB_URL .. localFileName, localFileName)
 end

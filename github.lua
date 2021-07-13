@@ -3,12 +3,17 @@
 local command = arg[1]
 local cloudFileName = arg[2]
 local localFileName = arg[3]
-local baseUrl = "https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/"
 
-if fs.exists("constants") then
-    os.loadAPI("constants")
-    baseUrl = constants.GITHUB_URL
+if not fs.exists("constants") then
+    local file = fs.open("constants", "w")
+    file.write("GITHUB_URL = \"https://raw.githubusercontent.com/Pedro-Bachiega/computercraft/master/\"")
+    file.close()
+
+    shell.run("mv constants.lua constants")
 end
+
+os.loadAPI("constants")
+local baseUrl = constants.GITHUB_URL
 
 if not fs.exists("api/httpHelper") then
     shell.run("pastebin get mLW65yV0 api/httpHelper")
