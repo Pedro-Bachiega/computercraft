@@ -50,6 +50,6 @@ function update(localFileName)
         error("Usage: httpHelper update <file_name>")
     end
 
-    os.loadAPI("constants.lua")
+    os.loadAPI("constants")
     newHelper():download(constants.GITHUB_URL .. localFileName, localFileName)
 end
